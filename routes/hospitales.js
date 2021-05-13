@@ -36,16 +36,17 @@ router.post(
 // Actualiza Hospital por el id
 router.put('/:id',
     [
-                
-        
+        validarJWT,
+        check('nombre','El nombre del hospital es obligarotio').not().isEmpty(),
+        validarCampos, // Ejecuta el middlewares validar campos de usuario    
     ],
     actualizarHospitales);
 
 
 // Borrar Hospital por el id
-router.delete('/:id',
-
-    borrarHospitales);
+router.delete('/:id', 
+              validarJWT, 
+              borrarHospitales);
 
 
 //Exporta el router 

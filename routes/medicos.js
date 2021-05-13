@@ -36,16 +36,16 @@ router.post(
 // Actualiza Medico por el id
 router.put('/:id',
     [
-                
-        
+        validarJWT,
+        check('nombre','El nombre del medico es obligarotio').not().isEmpty(),
+        check('hospital','El id del Hospital no es valido o falta id de hospital').isMongoId(),
+        validarCampos,
     ],
     actualizarMedico);
 
 
 // Borrar Medico por el id
-router.delete('/:id',
-
-    borrarMedico);
+router.delete('/:id', validarJWT, borrarMedico);
 
 
 //Exporta el router 
