@@ -7,14 +7,18 @@ const {dbConnection} = require('./database/config');
 // Crear el servidor de express
 const app = express();
 
-// Coneccion a la Base de Datos
-dbConnection();
-
 //Configurar CORS
 app.use(cors());
 
 //Lectura y parseo del Body
 app.use ( express.json());
+
+// Coneccion a la Base de Datos
+dbConnection();
+
+//Directorio publico
+app.use( express.static('public') );
+
 
 
 //console.log(process.env);
